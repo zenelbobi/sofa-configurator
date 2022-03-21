@@ -26,7 +26,7 @@ function Shoe() {
   // Drei's useGLTF hook sets up draco automatically, that's how it differs from useLoader(GLTFLoader, url)
   // { nodes, materials } are extras that come from useLoader, these do not exist in threejs/GLTFLoader
   // nodes is a named collection of meshes, materials a named collection of materials
-  const { nodes, materials } = useGLTF("shoe-draco.glb")
+  const { nodes } = useGLTF("scene.glb")
 
   // Animate model
   useFrame((state) => {
@@ -52,19 +52,20 @@ function Shoe() {
   return (
     <group
       ref={ref}
-      dispose={null}
-      onPointerOver={(e) => (e.stopPropagation(), set(e.object.material.name))}
-      onPointerOut={(e) => e.intersections.length === 0 && set(null)}
-      onPointerMissed={() => (state.current = null)}
-      onClick={(e) => (e.stopPropagation(), (state.current = e.object.material.name))}>
-      <mesh receiveShadow castShadow geometry={nodes.shoe.geometry} material={materials.laces} material-color={snap.items.laces} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_1.geometry} material={materials.mesh} material-color={snap.items.mesh} />
+      // dispose={null}
+      // onPointerOver={(e) => (e.stopPropagation(), set(e.object.material.name))}
+      // onPointerOut={(e) => e.intersections.length === 0 && set(null)}
+      // onPointerMissed={() => (state.current = null)}
+      // onClick={(e) => (e.stopPropagation(), (state.current = e.object.material.name))}
+      >
+      <mesh receiveShadow castShadow geometry={nodes} />
+      {/* <mesh receiveShadow castShadow geometry={nodes.shoe_1.geometry} material={materials.mesh} material-color={snap.items.mesh} />
       <mesh receiveShadow castShadow geometry={nodes.shoe_2.geometry} material={materials.caps} material-color={snap.items.caps} />
       <mesh receiveShadow castShadow geometry={nodes.shoe_3.geometry} material={materials.inner} material-color={snap.items.inner} />
       <mesh receiveShadow castShadow geometry={nodes.shoe_4.geometry} material={materials.sole} material-color={snap.items.sole} />
       <mesh receiveShadow castShadow geometry={nodes.shoe_5.geometry} material={materials.stripes} material-color={snap.items.stripes} />
       <mesh receiveShadow castShadow geometry={nodes.shoe_6.geometry} material={materials.band} material-color={snap.items.band} />
-      <mesh receiveShadow castShadow geometry={nodes.shoe_7.geometry} material={materials.patch} material-color={snap.items.patch} />
+      <mesh receiveShadow castShadow geometry={nodes.shoe_7.geometry} material={materials.patch} material-color={snap.items.patch} /> */}
     </group>
   )
 }
